@@ -4,8 +4,10 @@
 The purpose of tools is to master strings with Python.
 
 
-## Tools:
+## Required Tools:
 Python
+Docker
+docker-compose
 
 
 ## Source Structure:
@@ -19,7 +21,7 @@ containers/ is a directory containing the Dockerfile distribution.
 
 ## Local Setup:
 
-### Local Setup on Ubuntu with Python3 and virtualenv:
+### Local Setup on Ubuntu with Python and virtualenv:
 
 1. git clone <source>
 
