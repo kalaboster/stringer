@@ -5,7 +5,7 @@ The purpose of tools is to master strings with Python.
 
 
 ## Tools:
-Python3 3.6.1
+Python
 
 
 ## Source Structure:
@@ -31,7 +31,8 @@ containers/ is a directory containing the Dockerfile distribution.
 
 5. source ./bin/activate
 
-7. pip3 install -r requirements.txt
+7. pip install -r requirements.txt
+
 
 ## Testing:
 1  cd <source>
