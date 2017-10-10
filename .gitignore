@@ -10,13 +10,17 @@ build/
 *.zip
 *.png
 .cache/
-
+*.pyc
 # Python stuff
 *__pycache__*
 # Python virutalenv
+bin
+include
+lib
 bin/*
 include/*
 lib/*
 local/
+lib64
 pip-selfcheck.json
 
