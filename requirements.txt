@@ -5,3 +5,4 @@ pytest-cov==2.5.1
 pytest-twisted==1.5
 pytest==3.0.7
 django==1.11
+docopt==0.6.2
