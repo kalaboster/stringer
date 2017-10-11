@@ -40,7 +40,22 @@ containers/ is a directory containing the Dockerfile distribution.
 1  cd <source>
 2. pytest 
 
-## ToDo:
+## permutations - an app to get permutations of a string.
+
+### permutations_cli.py
+
+A command line interface.
+
+example command executed in virtualenv defined above: 'python permutations_cli.py --string test'
+
+
+### permutations_app.py
+
+1. setup virtualenv.
+
+2. execute this command to launch Flast restful app: 'python ./permutations_app.py'
+
+3. open browser and input this URL: 'http://127.0.0.1:5000/api/v1.0/permutations?string=test'
 
 ##Copyright
 
