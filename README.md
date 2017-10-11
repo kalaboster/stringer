@@ -1,7 +1,9 @@
 # stringer
 
 ## Purpose:
-The purpose of tools is to master strings with Python.
+The purpose of tools is to master strings with Python. It is also a tool to help redact sensitive information while logging
+and retaining enough meta data to keep the record near the original.
+
 
 
 ## Required Tools:
@@ -17,17 +19,16 @@ stringer/ is root level of the source. It is intended that the source structure 
 
 test/ is root level of the tests for the wordsum python code.
 
-containers/ is a directory containing the Dockerfile distribution.
 
 ## Local Setup:
 
 ### Local Setup on Ubuntu with Python and virtualenv:
 
-1. git clone <source>
+1. git clone &lt;source>
 
-2. cd <source>
+2. cd &lt;source>
 
-3. (if pip and virtualenv not installed) sudo apt-get install python3-pip python3-dev python-virtualenv python3.6-tk
+3. (if pip and virtualenv not installed) sudo apt-get install python-pip python-dev python-virtualenv python
 
 4. virtualenv .
 
@@ -37,8 +38,9 @@ containers/ is a directory containing the Dockerfile distribution.
 
 
 ## Testing:
-1  cd <source>
-2. pytest 
+1.  cd &lt;source>
+
+2. pytest test
 
 ## permutations - an app to get permutations of a string.
 
@@ -57,6 +59,13 @@ example command executed in virtualenv defined above: 'python permutations_cli.p
 
 3. open browser and input this URL: 'http://127.0.0.1:5000/api/v1.0/permutations?string=test'
 
+
+## Docker
+
+1. cd <source>
+
+2. docker-compose up
+
 ##Copyright
 
   Open Story License
@@ -70,3 +79,4 @@ example command executed in virtualenv defined above: 'python permutations_cli.p
   if the humans or intelligent agents keep this Open Story License with the Story,
   and if the Story you tell remains free,
   and if another writer writes or edits the Story then the writer's name needs to be appended to the end of the Writer list of this Open Story License.
+
