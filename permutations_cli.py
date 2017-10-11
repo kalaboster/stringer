@@ -1,9 +1,9 @@
-"""permutations.
+"""permutations_cli
 
 Usage:
-  permutations.py --string <string>
-  permutations.py (-h | --help)
-  permutations.py --version
+  permutations_cli.py --string <string>
+  permutations_cli.py (-h | --help)
+  permutations_cli.py --version
 
 Options:
   -h --help     Pass in a string.
