@@ -18,15 +18,15 @@ LINE_UPDATE_MASKED_CC = "2016-12-12 00:05:37 Account: 3618 Updated Record: 52571
 LINE_UPDATE_SSN = "2016-12-12 01:09:19 Account: 3618 Added record: 86329 Fields: Content=\"Payment\", Type=\"Mortgage\", Industry=\"Finance\", FirstName=\"Fred\", LastName=\"Flintstone\", SSN=\"620-07-3092\""
 LINE_UPDATE_MASKED_SSN =  "2016-12-12 01:09:19 Account: 3618 Added record: 86329 Fields: Content=\"Payment\", Type=\"Mortgage\", Industry=\"Finance\", FirstName=\"Fred\", LastName=\"Flintstone\", SSN=\"XXXXXXXXXXXXXXXX\""
 
-'''
+
 def test_mask_file():
 
     file_map = file_utils.mask_file(TEST_FILE, mask_model)
 
+    assert True == file_map.has_key(8)
+    assert str("2016-12-12 01:16:19 Account: 3618 Updated Record: 85714 Fields: Content=\"Quote\", Type=\"Auto\", "
+               "Industry=\"Insurance\", FirstName=\"Fred\", LastName=\"Flintstone\", SSN=\"XXXXXXXXXXXXXXXX\"") == file_map.get(8)[69]
 
-
-    #assert "" == file_map
-'''
 
 def test_mask_line_cc():
 
@@ -40,3 +40,14 @@ def test_mask_line_ssn():
 
     assert LINE_UPDATE_MASKED_SSN == file_masked
 
+def test_is_pattern_true():
+
+    contains = file_utils.is_pattern(LINE_UPDATE_SSN, mask_model)
+
+    assert True == contains
+
+def test_is_pattern_false():
+
+    contains = file_utils.is_pattern(LINE_DELETE, mask_model)
+
+    assert False == contains

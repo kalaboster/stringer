@@ -15,7 +15,10 @@ Create a list with lines both masked and unmasked to be returned and printed to 
 def mask_file(path=None, mask_model=None):
     logging.debug("map_file: " + path)
 
+    #List for all the .lines to return.
     file_line_list = []
+    # Count of line, so we know where the bad one's were in log.
+    redact_amount = 0
 
     if path is None or not os.path.isfile(path):
         logging.error('generate string is None')
@@ -23,10 +26,14 @@ def mask_file(path=None, mask_model=None):
     else:
         with open(path) as infile:
             for line in infile:
-                masked_line = mask_line(line, mask_model)
-                file_line_list.append(masked_line)
 
-    return file_line_list
+                if is_pattern(line):
+                    redact_amount += 1
+                    line = mask_line(line, mask_model)
+
+                file_line_list.append(line)
+
+    return {redact_amount: file_line_list}
 
 '''
 A thought to create a dataframe and use it to read in log pattern and use pandas. Might better for speed.
@@ -44,6 +51,22 @@ def df_file(path=None):
 '''
 
 '''
+Check line for pattern and log
+'''
+def is_pattern(line=None, mask_model=mask_model):
+    logging.debug("note_line_with_pattern")
+
+    contains = False
+
+    if line is None or mask_model is None:
+        logging.error("line and or mask_model is None")
+    else:
+        contains = bool(mask_model.Mask_Model().mask_find_regex.search(line))
+
+    return contains
+
+
+'''
 Mask a value of key value pair with Values in object.
 '''
 def mask_line(line=None, mask_model=mask_model):
@@ -52,8 +75,8 @@ def mask_line(line=None, mask_model=mask_model):
     if line is None or mask_model is None:
         logging.error("line and or mask_model is None")
     else:
-        mm = mask_model.Mask_Model()
-        line = re.sub(mm.mask_find_regex, mm.mask_replace, line.rstrip())
+
+        line = re.sub(mask_model.Mask_Model().mask_find_regex, mask_model.Mask_Model().mask_replace, line.rstrip())
 
     return line
 
