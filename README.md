@@ -27,7 +27,7 @@ test/ is root level of the tests for the wordsum python code.
 
 3. Test again in clean env Ubuntu and MacOS
 
-4. use os.path for separator where needed instead of literals.
+4. use os.sep for separator where needed instead of literals.
 
 5. Integration tests.
 
@@ -87,7 +87,7 @@ example command executed in virtualenv defined above: 'python permutations_cli.p
 
 2. docker-compose up
 
-##Copyright
+## Copyright
 
   Open Story License
 
