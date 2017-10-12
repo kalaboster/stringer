@@ -1,21 +1,26 @@
 # stringer
 
 ## Purpose:
-The purpose of tools is to master strings with Python. It is also a tool to help redact sensitive information while logging
-and retaining enough meta data to keep the record near the original.
+The purpose of tools is to master strings with Python.
 
+It has two current uses:
+
+1. It has a cli to take a string and return its permutations.
+
+2. It can take a at tar.gz containing files and search those files and redact/mask credit card and ssn patterned numbers.
+The patterns are defined in the mask_model.
+
+Please feel free to use. While this has been tested on Ubuntu 14. It is currently being tested on different platforms.
 
 
 ## Required Tools:
-Python
-Docker
-docker-compose
+ - Python
+ - Docker
+ - docker-compose
 
 
 ## Source Structure:
-stringer/ is root level of the source. It is intended that the source structure will
-        loosely mirror wordsum-java, it will for now be shallow and allow to
-        see where the code writes.
+stringer/ is root level of the source.
 
 test/ is root level of the tests for the wordsum python code.
 
@@ -23,7 +28,7 @@ test/ is root level of the tests for the wordsum python code.
 
 1. Complete all the TODO in code.
 
-2. Test using pandas to redact as it could be easier on memory.
+2. Test on a few more environments to check!
 
 3. Test again in clean env Ubuntu and MacOS
 
@@ -57,16 +62,17 @@ test/ is root level of the tests for the wordsum python code.
 
 #### permutations_cli.py
 
-A command line interface.
+A tool to return permustations of a string.
 
-example command executed in virtualenv defined above: 'python permutations_cli.py --string test'
+1. setup virtualenv.
 
+2. 'python permutations_cli.py --string test'
 
 #### permutations_app.py
 
 1. setup virtualenv.
 
-2. execute this command to launch Flast restful app: 'python ./permutations_app.py'
+2. execute this command to launch Flask restful app: 'python ./permutations_app.py'
 
 3. open browser and input this URL: 'http://127.0.0.1:5000/api/v1.0/permutations?string=test'
 
@@ -75,15 +81,27 @@ example command executed in virtualenv defined above: 'python permutations_cli.p
 
 #### log_redaction_cli.py
 
-(Work in progress.)
+A tool to redact patterns in a log file or files in a tar.gz arhive and create a log file.
 
-#### log_redaction_app.py
+1. setup virtualenv.
 
-(Work in progress.)
+2. python log_redaction_cli.py --tarfile "test/files/test_output.tar.gz"  --working-dir "/home/kalab/github/stringer/test/files" --output-dir  log_redataction_example
+
+- tarfile must be relative to python log_redaction_cli.py
+
+- work-dir is an absolute path.
+
+- output dir is string to name the dir for working dir
+
+- All log files and tar files output in working dir.
+
+- the log file is a formated json file with the same name as the tar file in the working directory.
+
 
 ## Docker
+(currently only permutations, but working to get endpoint for log reduction
 
-1. cd <source>
+1. cd &lt;source>
 
 2. docker-compose up
 
