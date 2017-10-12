@@ -99,7 +99,7 @@ A tool to redact patterns in a log file or files in a tar.gz arhive and create a
 
 
 ## Docker
-(currently only permutations, but working to get endpoint for log reduction
+(currently only permutations, but working to get endpoint for log redaction)
 
 1. cd &lt;source>
 
