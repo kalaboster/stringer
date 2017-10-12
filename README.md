@@ -40,7 +40,7 @@ test/ is root level of the tests for the wordsum python code.
 ## Testing:
 1.  cd &lt;source>
 
-2. pytest test
+2.  pytest test
 
 ## permutations - an app to get permutations of a string.
 
