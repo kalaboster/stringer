@@ -96,7 +96,23 @@ def mask_line(line=None, mask_model=mask_model):
 '''
 Print new file from a list of lines.
 '''
-def print_list_to_file(list=None):
+def print_list_to_file(list=None, path_and_filename=None):
     logging.debug("print_list_to_file" + str(list))
 
+    is_file = False
 
+    if list is None or mask_model is None:
+        logging.error("line and or mask_model is None")
+    else:
+
+        # Print
+        # TODO check to see if file already exists error out to not over write.
+        # TODO check to see if the file can write to the location.
+        out_file = open(path_and_filename, 'w')
+
+        for item in list:
+            out_file.write("%s\n" % item)
+
+        is_file = os.path.isfile(path_and_filename)
+
+    return is_file

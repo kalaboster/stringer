@@ -20,6 +20,8 @@ import os
 
 TEST_FILE = os.path.dirname(__file__) + "/../files/test_log.txt"
 
+TEST_CREATE_FILE = os.path.dirname(__file__) + "/../files/test_create_log.txt"
+
 LINE_DELETE = "2016-12-12 01:03:01 Account: 2557 Deleted record: 41043"
 
 LINE_UPDATE = "2016-12-12 00:48:19 Account: 3618 Updated Record: 57685 Fields: Content=\"Bulletin\", Title=\"Nonsense News\", Industry=\"Technology\", FirstName=\"Fred\", LastName=\"Flintstone\""
@@ -29,6 +31,8 @@ LINE_UPDATE_MASKED_CC = "2016-12-12 00:05:37 Account: 3618 Updated Record: 52571
 
 LINE_UPDATE_SSN = "2016-12-12 01:09:19 Account: 3618 Added record: 86329 Fields: Content=\"Payment\", Type=\"Mortgage\", Industry=\"Finance\", FirstName=\"Fred\", LastName=\"Flintstone\", SSN=\"620-07-3092\""
 LINE_UPDATE_MASKED_SSN =  "2016-12-12 01:09:19 Account: 3618 Added record: 86329 Fields: Content=\"Payment\", Type=\"Mortgage\", Industry=\"Finance\", FirstName=\"Fred\", LastName=\"Flintstone\", SSN=\"XXXXXXXXXXXXXXXX\""
+
+DICT_OF_THINGS_TO_PRINT = {2: (LINE_UPDATE_SSN, LINE_UPDATE_CC, LINE_UPDATE,LINE_DELETE)}
 
 
 def test_mask_file():
@@ -63,3 +67,13 @@ def test_is_pattern_false():
     contains = file_utils.is_pattern(LINE_DELETE, mask_model)
 
     assert False == contains
+
+
+def test_print_list_to_file():
+
+    if os.path.isfile(TEST_CREATE_FILE):
+        os.remove(TEST_CREATE_FILE)
+
+    is_file = file_utils.print_list_to_file(list=DICT_OF_THINGS_TO_PRINT.get(2), path_and_filename=TEST_CREATE_FILE)
+
+    assert True == is_file
