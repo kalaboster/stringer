@@ -18,20 +18,25 @@ LINE_UPDATE_MASKED_CC = "2016-12-12 00:05:37 Account: 3618 Updated Record: 52571
 LINE_UPDATE_SSN = "2016-12-12 01:09:19 Account: 3618 Added record: 86329 Fields: Content=\"Payment\", Type=\"Mortgage\", Industry=\"Finance\", FirstName=\"Fred\", LastName=\"Flintstone\", SSN=\"620-07-3092\""
 LINE_UPDATE_MASKED_SSN =  "2016-12-12 01:09:19 Account: 3618 Added record: 86329 Fields: Content=\"Payment\", Type=\"Mortgage\", Industry=\"Finance\", FirstName=\"Fred\", LastName=\"Flintstone\", SSN=\"XXXXXXXXXXXXXXXX\""
 
-
+'''
 def test_mask_file():
 
     file_map = file_utils.mask_file(TEST_FILE, mask_model)
 
 
 
-    assert "" == file_map
+    #assert "" == file_map
+'''
 
-
-def test_mask_line():
+def test_mask_line_cc():
 
     file_masked = file_utils.mask_line(LINE_UPDATE_CC, mask_model)
 
+    assert LINE_UPDATE_MASKED_CC == file_masked
 
+def test_mask_line_ssn():
 
-    assert "" == file_masked
+    file_masked = file_utils.mask_line(LINE_UPDATE_SSN, mask_model)
+
+    assert LINE_UPDATE_MASKED_SSN == file_masked
+

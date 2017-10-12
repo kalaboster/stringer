@@ -1,37 +1,40 @@
 '''
 A model to define values to mask and the masking string.
 '''
+import re
 class Mask_Model:
 
 
-    def __init__(self, mask_key_list=None, mask_value=None):
+    def __init__(self, mask_find_regex=None, mask_replace=None):
 
-        if mask_key_list is None:
-            self._mask_key_list = ['SSN','CC']
+        if mask_find_regex is None:
+            self._mask_find_regex = re.compile("(\d\d\d-\d\d-\d\d\d\d|\d\d\d\d-\d\d\d\d-\d\d\d\d-\d\d\d\d)")
         else:
-            self._mask_key_list = mask_key_list
+            self._mask_find_regex = re.compile(mask_find_regex)
 
-        if mask_value is None:
-            self._mask_value = "XXXXXXXXXXXXXXXX"
+        if mask_replace is None:
+            self._mask_replace =  "XXXXXXXXXXXXXXXX" 
         else:
-            self._mask_value = mask_value
-
+            self._mask_replace = mask_replace
 
 
     @property
-    def mask_key_list(self):
-        return self._mask_key_list
+    def mask_find_regex(self):
+        return self._mask_find_regex
 
-    @mask_key_list.setter
-    def mask_key_list(self, mask_key_list):
-        self._mask_key_list = mask_key_list
+    @mask_find_regex.setter
+    def mask_find_regex(self, mask_find_regex):
+        self._mask_find_regex = re.compile(mask_find_regex)
 
 
     @property
-    def mask_value(self):
-        return self._mask_value
+    def mask_replace(self):
+        return self._mask_replace
 
-    @mask_value.setter
-    def mask_value(self, mask_value):
-        self._mask_value = mask_value
+    @mask_replace.setter
+    def mask_replace(self, mask_replace):
+        self._mask_replace = mask_replace
+
+
+
 
