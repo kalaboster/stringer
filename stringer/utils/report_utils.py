@@ -11,7 +11,24 @@
 # and if another writer writes or edits the Story then the writer's name needs to be appended to the end of the Writer list of this Open Story License.
 import logging
 import os
+import json
 
+
+def print_report_dict(path=None, name="report_default_name.json", report_list_dict=None):
+    logging.debug("print_report_dict")
+
+    if path is None or report_list_dict is None:
+        logging.error("path is None or report_list_dict is None")
+    else:
+        logging.debug("Printing report.")
+
+
+    with open(os.path.join(path, name), 'w') as file:
+
+        file.write(json.dumps(report_list_dict, indent=4, sort_keys=True))
+
+
+    return bool(os.path.join(path, name))
 
 '''
 Future use to get more data on the file before masking.
@@ -38,3 +55,5 @@ def get_file_meta_dict(file):
 
 
     return is_file
+
+

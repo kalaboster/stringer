@@ -14,8 +14,19 @@ import os
 
 TEST_FILE = os.path.dirname(__file__) + "/../files/test_log.txt"
 
-TEST_FILE_META_DICT = {'os_stat': "posix.stat_result(st_mode=33204, st_ino=4199090, st_dev=2051L, st_nlink=1, st_uid=1001, "
-                                  "st_gid=1001, st_size=10381, st_atime=1507754550, st_mtime=1507656962, st_ctime=1507656962)", 'file_name': 'test_log.txt'}
+TEST_FILE_OUTPUT_DIR = os.path.dirname(__file__) + "/../files"
+
+TEST_FILE_META_DICT = [{'redact_amount': 8, 'file': '/home/kalab/github/stringer/test/utils/../files/test_log_cp.txt', 'lines_numbers_redacted': [10, 25, 34, 35, 45, 60, 69, 70]},
+                       {'redact_amount': 7, 'file': '/home/kalab/github/stringer/test/utils/../files/test_log_cp1.txt', 'lines_numbers_redacted': [10, 34, 35, 45, 60, 69, 70]},
+                       {'redact_amount': 1, 'file': '/home/kalab/github/stringer/test/utils/../files/test_log_cp2.txt', 'lines_numbers_redacted': [70]},
+                       {'redact_amount': 0, 'file': '/home/kalab/github/stringer/test/utils/../files/test_log_cp3.txt', 'lines_numbers_redacted': []}]
+
+def test_print_report_dict():
+
+    is_file = report_utils.print_report_dict(path=TEST_FILE_OUTPUT_DIR , name="test_print_report.json", report_list_dict=TEST_FILE_META_DICT)
+
+    assert True == is_file
+
 '''
 Under work.
 def test_get_file_meta_dict():

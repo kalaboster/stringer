@@ -27,6 +27,9 @@ def process_gz(file=None,working_dir=None, output_gz_dir=None):
         logging.error("file is None or os.path.isfile(file)")
     else:
         logging.debug("Processing gz...")
+
+        report_list_dict = []
+
         # Put all files iin working dir.
         is_gzip = gzip_utils.open_gzip(file, working_dir, output_gz_dir)
 
@@ -36,13 +39,14 @@ def process_gz(file=None,working_dir=None, output_gz_dir=None):
 
         # Loop through all the files masking...
         for f in files:
-            file_utils.mask_file(os.path.join(working_dir, output_gz_dir, f), mask_model)
+            report_list_dict.append(file_utils.mask_file(os.path.join(working_dir, output_gz_dir, f), mask_model))
 
         # make new file name
         name = os.path.basename(file).split(".")
 
         gzip_utils.close_gzip(os.path.join(working_dir, name[0] +'_masked.tar.gz'), os.path.join(working_dir, output_gz_dir))
 
+        report_utils.print_report_dict(working_dir, name[0] +'_masked_report.json', report_list_dict)
 
         is_file = bool(os.path.join(working_dir, name[0] +'_masked.tar.gz'))
 

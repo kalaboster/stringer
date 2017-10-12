@@ -28,10 +28,14 @@ Create a list with lines both masked and unmasked to be returned and printed to 
 def mask_file(path=None, mask_model=None):
     logging.debug("map_file: " + path)
 
-    #List for all the .lines to return.
+    #List for all the .lines to print
     file_line_list = []
-    # Count of line, so we know where the bad one's were in log.
+    # A list of the lines altered.
+    lines_numbers_redacted = []
+    # redact things.
     redact_amount = 0
+    # Line count to record.
+    line_count = 0
 
     if path is None or not os.path.isfile(path):
         logging.error('generate string is None')
@@ -39,9 +43,10 @@ def mask_file(path=None, mask_model=None):
     else:
         with open(path) as infile:
             for line in infile:
-
+                line_count += 1
                 if is_pattern(line):
                     redact_amount += 1
+                    lines_numbers_redacted.append(line_count)
                     line = mask_line(line, mask_model)
 
                 file_line_list.append(line)
@@ -49,7 +54,7 @@ def mask_file(path=None, mask_model=None):
         print_list_to_file(file_line_list, path)
 
     # TODO: Get rid of literals.
-    return {'redact':redact_amount, 'lines': file_line_list}
+    return {'file': path, 'redact_amount':redact_amount, 'lines_numbers_redacted': lines_numbers_redacted}
 
 '''
 A thought to create a dataframe and use it to read in log pattern and use pandas. Might better for speed.

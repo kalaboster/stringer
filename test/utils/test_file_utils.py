@@ -16,9 +16,12 @@ Test to test the file_utils
 import stringer.utils.file_utils as file_utils
 import stringer.model.mask_model as mask_model
 import os
+from shutil import copyfile
 
 
 TEST_FILE = os.path.dirname(__file__) + "/../files/test_log.txt"
+
+TEST_FILE_CP = os.path.dirname(__file__) + "/../files/test_log_cp.txt"
 
 TEST_CREATE_FILE = os.path.dirname(__file__) + "/../files/test_create_log.txt"
 
@@ -32,17 +35,23 @@ LINE_UPDATE_MASKED_CC = "2016-12-12 00:05:37 Account: 3618 Updated Record: 52571
 LINE_UPDATE_SSN = "2016-12-12 01:09:19 Account: 3618 Added record: 86329 Fields: Content=\"Payment\", Type=\"Mortgage\", Industry=\"Finance\", FirstName=\"Fred\", LastName=\"Flintstone\", SSN=\"620-07-3092\""
 LINE_UPDATE_MASKED_SSN =  "2016-12-12 01:09:19 Account: 3618 Added record: 86329 Fields: Content=\"Payment\", Type=\"Mortgage\", Industry=\"Finance\", FirstName=\"Fred\", LastName=\"Flintstone\", SSN=\"XXXXXXXXXXXXXXXX\""
 
-DICT_OF_THINGS_TO_PRINT = {'redact': 2, 'lines': (LINE_UPDATE_SSN, LINE_UPDATE_CC, LINE_UPDATE,LINE_DELETE)}
+DICT_OF_THINGS_TO_PRINT = {'redact_amount': 2, 'lines': (LINE_UPDATE_SSN, LINE_UPDATE_CC, LINE_UPDATE,LINE_DELETE)}
+
+FILE_MAP_TEST = {'redact_amount': 0, 'file': '/home/kalab/github/stringer/test/utils/../files/test_log.txt', 'lines_numbers_redacted': []}
+
 
 
 def test_mask_file():
 
-    file_map = file_utils.mask_file(TEST_FILE, mask_model)
+    copyfile(TEST_FILE, TEST_FILE_CP)
 
-    assert True == file_map.has_key('redact')
-    assert str("2016-12-12 01:16:19 Account: 3618 Updated Record: 85714 Fields: Content=\"Quote\", Type=\"Auto\", "
-               "Industry=\"Insurance\", FirstName=\"Fred\", LastName=\"Flintstone\", SSN=\"XXXXXXXXXXXXXXXX\"") == file_map.get('lines')[69]
+    file_map = file_utils.mask_file(TEST_FILE_CP , mask_model)
 
+    assert True == file_map.has_key('redact_amount')
+
+    assert 8 == file_map.get('redact_amount')
+    assert '/home/kalab/github/stringer/test/utils/../files/test_log_cp.txt' == file_map.get('file')
+    assert [10, 25, 34, 35, 45, 60, 69, 70] == file_map.get('lines_numbers_redacted')
 
 def test_mask_line_cc():
 
