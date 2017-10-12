@@ -19,6 +19,17 @@ stringer/ is root level of the source. It is intended that the source structure 
 
 test/ is root level of the tests for the wordsum python code.
 
+## TODO
+
+1. Complete all the TODO in code.
+
+2. Test using pandas to redact as it could be easier on memory.
+
+3. Test again in clean env Ubuntu and MacOS
+
+4. use os.path for separator where needed instead of literals.
+
+5. Integration tests.
 
 ## Local Setup:
 
@@ -34,7 +45,7 @@ test/ is root level of the tests for the wordsum python code.
 
 5. source ./bin/activate
 
-7. pip install -r requirements.txt
+6. pip install -r requirements.txt
 
 
 ## Testing:
@@ -44,14 +55,14 @@ test/ is root level of the tests for the wordsum python code.
 
 ## permutations - an app to get permutations of a string.
 
-### permutations_cli.py
+#### permutations_cli.py
 
 A command line interface.
 
 example command executed in virtualenv defined above: 'python permutations_cli.py --string test'
 
 
-### permutations_app.py
+#### permutations_app.py
 
 1. setup virtualenv.
 
@@ -59,6 +70,16 @@ example command executed in virtualenv defined above: 'python permutations_cli.p
 
 3. open browser and input this URL: 'http://127.0.0.1:5000/api/v1.0/permutations?string=test'
 
+
+## log redaction - an app to redact patterns in logs.
+
+#### log_redaction_cli.py
+
+(Work in progress.)
+
+#### log_redaction_app.py
+
+(Work in progress.)
 
 ## Docker
 
