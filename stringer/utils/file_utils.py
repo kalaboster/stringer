@@ -45,6 +45,9 @@ def mask_file(path=None, mask_model=None):
                     line = mask_line(line, mask_model)
 
                 file_line_list.append(line)
+
+        print_list_to_file(file_line_list, path)
+
     # TODO: Get rid of literals.
     return {'redact':redact_amount, 'lines': file_line_list}
 
@@ -111,7 +114,7 @@ def print_list_to_file(list=None, path_and_filename=None):
         out_file = open(path_and_filename, 'w')
 
         for item in list:
-            out_file.write("%s\n" % item)
+            out_file.write("%s\n" % item.strip())
 
         is_file = os.path.isfile(path_and_filename)
 

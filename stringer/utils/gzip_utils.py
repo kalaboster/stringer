@@ -17,9 +17,8 @@ import os
 import shutil
 import tarfile
 
-OUTPUT_DIR = "gzip_files"
 
-def open_gzip(gzip_file=None, gzip_output_loc=None):
+def open_gzip(gzip_file=None, gzip_output_loc=None, output_gz_dir="gzip_files"):
     logging.debug("open_gzip")
 
     # A boolean to return if the dir exists for a simple sanity check
@@ -33,11 +32,11 @@ def open_gzip(gzip_file=None, gzip_output_loc=None):
         logging.debug("opening gzip...")
 
         # Check and clear old data
-        if os.path.isdir(os.path.join(gzip_output_loc, OUTPUT_DIR )):
+        if os.path.isdir(os.path.join(gzip_output_loc, output_gz_dir)):
 
-            shutil.rmtree(os.path.join(gzip_output_loc, OUTPUT_DIR ))
+            shutil.rmtree(os.path.join(gzip_output_loc, output_gz_dir))
 
-        os.mkdir(os.path.join(gzip_output_loc, OUTPUT_DIR ))
+        os.mkdir(os.path.join(gzip_output_loc, output_gz_dir))
 
         # Open files and output.
         tar = tarfile.open(gzip_file, "r:gz")
@@ -46,12 +45,12 @@ def open_gzip(gzip_file=None, gzip_output_loc=None):
             file = tar.extractfile(member)
             if file is not None:
                 content = file.read()
-                file_h = open(os.path.join(gzip_output_loc, OUTPUT_DIR , file.name),'w')
+                file_h = open(os.path.join(gzip_output_loc, output_gz_dir, file.name),'w')
                 file_h.write(content)
 
         tar.close()
 
-    is_dir = os.path.isdir(os.path.join(gzip_output_loc, OUTPUT_DIR ))
+    is_dir = os.path.isdir(os.path.join(gzip_output_loc, output_gz_dir))
 
     return is_dir
 
@@ -78,12 +77,11 @@ def close_gzip(gzip_file=None, gzip_output_loc=None):
 
             shutil.rmtree(os.path.join(gzip_output_loc, gzip_file))
 
-
         tar = tarfile.open(os.path.join(gzip_output_loc, gzip_file), "w:gz")
         tar.add(gzip_output_loc, arcname=".")
         tar.close()
 
 
-        is_file = os.path.isfile(gzip_file)
+        is_file = os.path.isfile(os.path.join(gzip_output_loc, gzip_file))
 
     return is_file
