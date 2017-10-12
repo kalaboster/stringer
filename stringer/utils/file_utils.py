@@ -45,8 +45,8 @@ def mask_file(path=None, mask_model=None):
                     line = mask_line(line, mask_model)
 
                 file_line_list.append(line)
-
-    return {redact_amount: file_line_list}
+    # TODO: Get rid of literals.
+    return {'redact':redact_amount, 'lines': file_line_list}
 
 '''
 A thought to create a dataframe and use it to read in log pattern and use pandas. Might better for speed.

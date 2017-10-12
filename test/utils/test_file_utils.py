@@ -32,16 +32,16 @@ LINE_UPDATE_MASKED_CC = "2016-12-12 00:05:37 Account: 3618 Updated Record: 52571
 LINE_UPDATE_SSN = "2016-12-12 01:09:19 Account: 3618 Added record: 86329 Fields: Content=\"Payment\", Type=\"Mortgage\", Industry=\"Finance\", FirstName=\"Fred\", LastName=\"Flintstone\", SSN=\"620-07-3092\""
 LINE_UPDATE_MASKED_SSN =  "2016-12-12 01:09:19 Account: 3618 Added record: 86329 Fields: Content=\"Payment\", Type=\"Mortgage\", Industry=\"Finance\", FirstName=\"Fred\", LastName=\"Flintstone\", SSN=\"XXXXXXXXXXXXXXXX\""
 
-DICT_OF_THINGS_TO_PRINT = {2: (LINE_UPDATE_SSN, LINE_UPDATE_CC, LINE_UPDATE,LINE_DELETE)}
+DICT_OF_THINGS_TO_PRINT = {'redact': 2, 'lines': (LINE_UPDATE_SSN, LINE_UPDATE_CC, LINE_UPDATE,LINE_DELETE)}
 
 
 def test_mask_file():
 
     file_map = file_utils.mask_file(TEST_FILE, mask_model)
 
-    assert True == file_map.has_key(8)
+    assert True == file_map.has_key('redact')
     assert str("2016-12-12 01:16:19 Account: 3618 Updated Record: 85714 Fields: Content=\"Quote\", Type=\"Auto\", "
-               "Industry=\"Insurance\", FirstName=\"Fred\", LastName=\"Flintstone\", SSN=\"XXXXXXXXXXXXXXXX\"") == file_map.get(8)[69]
+               "Industry=\"Insurance\", FirstName=\"Fred\", LastName=\"Flintstone\", SSN=\"XXXXXXXXXXXXXXXX\"") == file_map.get('lines')[69]
 
 
 def test_mask_line_cc():
@@ -74,6 +74,6 @@ def test_print_list_to_file():
     if os.path.isfile(TEST_CREATE_FILE):
         os.remove(TEST_CREATE_FILE)
 
-    is_file = file_utils.print_list_to_file(list=DICT_OF_THINGS_TO_PRINT.get(2), path_and_filename=TEST_CREATE_FILE)
+    is_file = file_utils.print_list_to_file(list=DICT_OF_THINGS_TO_PRINT.get('lines'), path_and_filename=TEST_CREATE_FILE)
 
     assert True == is_file
