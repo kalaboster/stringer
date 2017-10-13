@@ -28,21 +28,39 @@ test/ is root level of the tests for the wordsum python code.
 
 1. Complete all the TODO in code.
 
-2. Test on a few more environments to check!
+2. Test in again in Ubuntu and MacOS
 
-3. Test again in clean env Ubuntu and MacOS
+3. Use os.path.join for separator where needed instead of string or os.sep.
 
-4. use os.sep for separator where needed instead of literals.
+4. Test on widows where possible.
 
 5. Integration tests.
 
 ## Local Setup:
 
+### Local MacOS:
+
+1.	git clone https://github.com/kalaboster/stringer.git
+
+2.  cd stringer
+
+3.	(if not pip installed) sudo easy_install pip
+
+4.	(if virtualenv not installed) sudo pip install --upgrade virtualenv
+
+5.	virtualenv .
+
+6.	source ./bin/activate
+
+7.  pip install -r requirements.txt
+
+ 
+
 ### Local Setup on Ubuntu with Python and virtualenv:
 
-1. git clone &lt;source>
+1. git clone https://github.com/kalaboster/stringer.git
 
-2. cd &lt;source>
+2. cd stringer
 
 3. (if pip and virtualenv not installed) sudo apt-get install python-pip python-dev python-virtualenv python
 
@@ -54,7 +72,7 @@ test/ is root level of the tests for the wordsum python code.
 
 
 ## Testing:
-1.  cd &lt;source>
+1.  cd stringer
 
 2.  pytest test
 
@@ -64,17 +82,17 @@ test/ is root level of the tests for the wordsum python code.
 
 A tool to return permustations of a string.
 
-1. setup virtualenv.
+1. Do Local Setup
 
 2. 'python permutations_cli.py --string test'
 
 #### permutations_app.py
 
-1. setup virtualenv.
+1. Do Local Setup. 
 
 2. execute this command to launch Flask restful app: 'python ./permutations_app.py'
 
-3. open browser and input this URL: 'http://127.0.0.1:5000/api/v1.0/permutations?string=test'
+3. open browser and input this URL: 'http://0.0.0.0:5000/api/v1.0/permutations?string=test'
 
 
 ## log redaction - an app to redact patterns in logs.
