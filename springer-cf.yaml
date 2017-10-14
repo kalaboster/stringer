@@ -1,0 +1,95 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Description: Begining stringer template
+
+Parameters:
+
+  Ami:
+    Default: ami-718c6909
+    Description: AMI ID FOR STACK
+    Type: String
+
+  Subnet:
+    Default: REPLACE_WITH_VALUE
+    Description: Subnet for one non elb
+    Type: String
+
+  Instance:
+    Default: t2.micro
+    Description: The size of the instance.
+    Type: String
+
+  Zone:
+    Default: us-west-2a
+    Description: The region to launch inside.
+    Type: String
+
+  SecurityGroups:
+    Default: REPLACE_WITH_VALUE
+    Description: A list of groups.
+    Type: CommaDelimitedList
+
+  KeySSH:
+    Default: REPLACE_WITH_VALUE
+    Description: The name of the key we want on our default installation.
+    Type: String
+
+  OwnerKey:
+    Default: owner
+    Description: The tag we care about.
+    Type: String
+
+
+  OwnerValue:
+    Default: kalab
+    Description: The owner value for the tag we care about.
+    Type: String
+
+Resources:
+
+  WebEIP:
+    Type: AWS::EC2::EIP
+    Properties:
+      InstanceId:
+        Ref: WebEC2Instance
+
+  IPAssoc:
+    Type: AWS::EC2::EIPAssociation
+    Properties:
+      InstanceId:
+        Ref: WebEC2Instance
+      EIP:
+       Ref: WebEIP
+
+  WebEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId:
+        Ref: Ami
+      SubnetId:
+        Ref: Subnet
+      InstanceType:
+        Ref: Instance
+      AvailabilityZone:
+        Ref: Zone
+      SecurityGroupIds:
+        Ref: SecurityGroups
+      KeyName:
+        Ref: KeySSH
+      Tags:
+         - Key:
+            Ref: OwnerKey
+           Value:
+            Ref: OwnerValue
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          sudo add-apt-repository ppa:brightbox/ruby-ng -y
+          apt-get update
+          apt-get -y install ruby2.1
+          apt-get -y install wget
+          cd /home/ubuntu
+          wget https://aws-codedeploy-us-west-2.s3.amazonaws.com/latest/install
+          chmod +x ./install
+          ./install auto
+          service codedeploy-agent start
