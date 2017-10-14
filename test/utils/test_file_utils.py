@@ -50,7 +50,6 @@ def test_mask_file():
     assert True == file_map.has_key('redact_amount')
 
     assert 8 == file_map.get('redact_amount')
-    assert '/home/kalab/github/stringer/test/utils/../files/test_log_cp.txt' == file_map.get('file')
     assert [10, 25, 34, 35, 45, 60, 69, 70] == file_map.get('lines_numbers_redacted')
 
 def test_mask_line_cc():
