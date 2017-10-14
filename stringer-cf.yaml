@@ -34,16 +34,21 @@ Parameters:
     Description: The name of the key we want on our default installation.
     Type: String
 
+  IamRole:
+    Default: stringer-instance
+    Description: The owner value for the tag we care about.
+    Type: String
+
   OwnerKey:
     Default: owner
     Description: The tag we care about.
     Type: String
 
-
   OwnerValue:
     Default: kalab
     Description: The owner value for the tag we care about.
     Type: String
+
 
 Resources:
 
@@ -76,6 +81,8 @@ Resources:
         Ref: SecurityGroups
       KeyName:
         Ref: KeySSH
+      IamInstanceProfile:
+        Ref: IamRole
       Tags:
          - Key:
             Ref: OwnerKey
