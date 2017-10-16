@@ -24,6 +24,8 @@ stringer/ is root level of the source.
 
 test/ is root level of the tests for the wordsum python code.
 
+aws/ is a root level source of aws cloudformation configuration files and replated documents and scripts. (under construction)
+
 ## TODO
 
 1. Complete all the TODO in code.
@@ -133,11 +135,13 @@ a. Create template IAM polices to attach to the role.
 b. Create template S3 bucket.
 c. Create subnet and security group template.
 
-1. Launch CF stack for IAM role and instance-profile: stringer-iam.yaml
+1. Launch CF stack for IAM role and instance-profile: aws/stringer-iam.yaml
 
-2. Launch CF stack for the EC2 instance: stringer-cf.yaml
+2. Launch CF stack for the EC2 instance: aws/stringer-cf.yaml
 
-3. Working...
+3. Launch CF stack for the CodeDeploy application configuration: aws/stringer-cd.yaml
+
+4. Working on the deploying with aws script...
 
 
 ## Copyright
