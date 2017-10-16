@@ -43,3 +43,20 @@ Resources:
             Action:
               - "sts:AssumeRole"
       RoleName: "codedeploy-service"
+
+
+  CodeBuildServiceRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: "Allow"
+            Principal:
+              Service:
+                - "codebuild.amazonaws.com"
+            Action:
+              - "sts:AssumeRole"
+      RoleName: "codebuild-service"
+
