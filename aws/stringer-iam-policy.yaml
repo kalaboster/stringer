@@ -1,0 +1,52 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Description: Begining s3 template to configure and create for this app.
+
+Parameters:
+
+  CodeBuildRoleName:
+    Default: codebuild-service-role
+    Description: The bucket name
+    Type: String
+
+
+Resources:
+
+
+  CodeBuildLogPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: stringer-cb-log-policy
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          -
+            Effect: Allow
+            Action:
+              - logs:CreateLogGroup
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+            Resource: "*"
+          -
+            Effect: Allow
+            Action:
+              - s3:PutObject
+              - s3:GetObject
+              - s3:GetObjectVersion
+            Resource: "*"
+          -
+            Effect: Allow
+            Resource: "*"
+            Action:
+              - s3:PutObject
+            Resource: "*"
+          -
+            Effect: Allow
+            Action:
+              - ssm:GetParameters
+            Resource: "*"
+      Roles:
+        -
+          Ref: CodeBuildRoleName
+
+

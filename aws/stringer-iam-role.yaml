@@ -17,13 +17,13 @@ Resources:
             Action:
               - "sts:AssumeRole"
       Path: "/"
-      RoleName: "stringer-instance"
+      RoleName: "stringer-instance-role"
 
   InstanceProfile:
     Type: "AWS::IAM::InstanceProfile"
     Properties:
       Path: "/"
-      InstanceProfileName: "stringer-instance"
+      InstanceProfileName: "stringer-instance-profile"
       Roles:
         -
           Ref: InstanceRole
@@ -42,7 +42,7 @@ Resources:
                 - "codedeploy.amazonaws.com"
             Action:
               - "sts:AssumeRole"
-      RoleName: "codedeploy-service"
+      RoleName: "codedeploy-service-role"
 
 
   CodeBuildServiceRole:
@@ -58,5 +58,5 @@ Resources:
                 - "codebuild.amazonaws.com"
             Action:
               - "sts:AssumeRole"
-      RoleName: "codebuild-service"
+      RoleName: "codebuild-service-role"
 
