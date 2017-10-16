@@ -72,6 +72,8 @@ aws/ is a root level source of aws cloudformation configuration files and replat
 
 6. pip install -r requirements.txt
 
+7. deactivate
+
 
 ## Testing:
 1.  cd stringer
@@ -137,7 +139,7 @@ c. Create subnet and security group template.
 
 1. Launch CF stack for IAM role and instance-profile: aws/stringer-iam.yaml
 
-2. Launch CF stack for the EC2 instance: aws/stringer-cf.yaml
+2. Launch CF stack for the EC2 instance: aws/stringer-ec2.yaml
 
 3. Launch CF stack for the CodeDeploy application configuration: aws/stringer-cd.yaml
 
