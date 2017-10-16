@@ -1,22 +1,46 @@
-language: python
+AWSTemplateFormatVersion: "2010-09-09"
 
-python:
-  - 2.7
+Description: The code deployment application.
 
-env:
-  global:
+Parameters:
 
+  ServiceRole:
+    Default: INPUT_IAM
+    Description: IAM service role for code deploy
+    Type: String
 
-before_install:
-  - pip install awscli
+  ApplicationName:
+    Default: stringer-app
+    Type: String
 
-install:
-  - pip install -r requirements.txt
+  EC2TagKey:
+    Default: owner
+    Type: String
 
-before_script:
+  EC2TagValue:
+    Default: kalab
+    Type: String
 
-
-script:
-
-
-after_success:
+Resources:
+  Application:
+    Type: 'AWS::CodeDeploy::Application'
+    Properties:
+      ApplicationName:
+        Ref: ApplicationName
+  DeploymentGroup:
+    Type: 'AWS::CodeDeploy::DeploymentGroup'
+    Properties:
+      ApplicationName:
+        Ref: Application
+      DeploymentConfigName: CodeDeployDefault.OneAtATime
+      AutoRollbackConfiguration:
+        Enabled: 'false'
+      DeploymentGroupName: wordsum
+      Ec2TagFilters:
+        - Key:
+            Ref: EC2TagKey
+          Value:
+            Ref: EC2TagValue
+          Type: KEY_AND_VALUE
+      ServiceRoleArn:
+        Ref: ServiceRole
