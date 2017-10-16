@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+     - pip install -r requirements.txt
+  build:
+    commands:
+      - pytest test
+
+artifacts:
+  files:
+    - stringer
+    - permutations_cli.py
+    - permutations_app.py
+    - log_redaction_cli.py
