@@ -10,7 +10,7 @@ phases:
 
 artifacts:
   files:
-    - stringer
+    - stringer/**/*
     - permutations_cli.py
     - permutations_app.py
     - log_redaction_cli.py
