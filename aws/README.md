@@ -37,14 +37,16 @@ Purpose of these files is to automate deploy and configure-as-code stringer host
 
 4. cd stringer/aws
 
-5. NOTE: All values of parameters can be replaced. All UPPER_CASE values need to be replaced.
+5. aws cloudformation create-stack --stack-name stringer-iam-role --template-body file://stringer-iam-role.yaml --capabilities CAPABILITY_NAMED_IAM
 
-6. aws cloudformation create-stack --stack-name stringer-iam-role --template-body file://stringer-iam-role.yaml --capabilities CAPABILITY_NAMED_IAM
+6. aws cloudformation create-stack --stack-name stringer-iam-policy --template-body file://stringer-iam-policy.yaml --capabilities CAPABILITY_NAMED_IAM
 
-7. aws cloudformation create-stack --stack-name stringer-iam-policy --template-body file://stringer-iam-policy.yaml --capabilities CAPABILITY_NAMED_IAM
+7. NOTE: All values of parameters can be replaced. All the following REPLACE_UPPER_CASE values beginning with REPLACE need to be replaced.
 
 8. aws cloudformation create-stack --stack-name stringer-s3 --template-body file://stringer-s3.yaml  --parameters ParameterKey=BuildBucketName,ParameterValue=REPLACE_BUILD_BUCKET_NAME
 
 9. aws cloudformation create-stack --stack-name stringer-ec2 --template-body file://stringer-ec2.yaml  --parameters ParameterKey=Ami,ParameterValue=ami-718c6909 ParameterKey=Instance,ParameterValue=t2.micro ParameterKey=Zone,ParameterValue=us-west-2a ParameterKey=Subnet,ParameterValue=REPLACE_WITH_EC2_SUBNET_STRING ParameterKey=SecurityGroups,ParameterValue=REPLACE_WITH_SECURITYGROUPS_LIST ParameterKey=KeySSH,ParameterValue=REPLACE_WITH_KEYSSH_NAME ParameterKey=IamProfile,ParameterValue=stringer-instance-profile ParameterKey=OwnerKey,ParameterValue=owner ParameterKey=OwnerValue,ParameterValue=REPLACE_WITH_YOU
 
-10. (under construction)
+10. aws cloudformation create-stack --stack-name stringer-cb --template-body file://stringer-cb.yaml --parameters ParameterKey=ProjectName,ParameterValue=stringer-codebuild-service  ParameterKey=ServiceRole,ParameterValue=codebuild-service-role ParameterKey=BuildBucketName,ParameterValue=REPLACE_BUILD_BUCKET_NAME
+
+11. (under construction)

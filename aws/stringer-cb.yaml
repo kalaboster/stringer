@@ -13,8 +13,8 @@ Parameters:
     Default: codebuild-service-role
     Type: String
 
-  CodeBuildBucket:
-    Default: INPUT_THE_BUCKET
+  BuildBucketName:
+    Default: REPLACE_BUILD_BUCKET_NAME
     Type: String
 
 
@@ -31,10 +31,10 @@ Resources:
       Artifacts:
         Name: stringer-codebuild-artifact
         Location:
-          Ref: CodeBuildBucket
+          Ref: BuildBucketName
         Type: S3
         NamespaceType: NONE
-        Packaging: NONE
+        Packaging: ZIP
         Path: stringer
       Environment:
         Type: LINUX_CONTAINER
@@ -43,7 +43,7 @@ Resources:
       Source:
         Location: https://github.com/kalaboster/stringer
         Type: GITHUB
-      TimeoutInMinutes: 10
+      TimeoutInMinutes: 5
       Tags:
         - Key: buildprocess
           Value: stringer
