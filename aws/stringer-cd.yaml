@@ -4,13 +4,18 @@ Description: The code deployment application.
 
 Parameters:
 
-  ServiceRole:
-    Default: INPUT_IAM
-    Description: IAM service role for code deploy
+  ServiceRoleArn:
+    Default: REPLACE_ARN_ROLE
+    Description: EC2 instance role as it will be used by code deploy.
     Type: String
 
   ApplicationName:
     Default: stringer-app
+    Type: String
+
+  BuildBucketName:
+    Default: stringer-test-02
+    Description: The bucket name
     Type: String
 
   EC2TagKey:
@@ -29,14 +34,22 @@ Resources:
       ApplicationName:
         Ref: ApplicationName
 
-  DeploymentGroup:
+  StringerDeploymentGroup:
     Type: 'AWS::CodeDeploy::DeploymentGroup'
     Properties:
       ApplicationName:
         Ref: Application
       DeploymentConfigName: CodeDeployDefault.OneAtATime
-      AutoRollbackConfiguration:
-        Enabled: 'false'
+      Deployment:
+        Description: "Deploying Stringer."
+        IgnoreApplicationStopFailures: true
+        Revision:
+          RevisionType: S3
+          S3Location:
+            Bucket:
+             Ref: BuildBucketName
+            Key: stringer
+            BundleType: Zip
       DeploymentGroupName: stringer
       Ec2TagFilters:
         - Key:
@@ -45,4 +58,4 @@ Resources:
             Ref: EC2TagValue
           Type: KEY_AND_VALUE
       ServiceRoleArn:
-        Ref: ServiceRole
+        Ref: ServiceRoleArn

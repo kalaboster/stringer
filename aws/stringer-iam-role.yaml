@@ -58,5 +58,5 @@ Resources:
                 - "codebuild.amazonaws.com"
             Action:
               - "sts:AssumeRole"
-      RoleName: "codebuild-service-role"
 
+      RoleName: "codebuild-service-role"
