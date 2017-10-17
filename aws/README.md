@@ -26,6 +26,9 @@ Purpose of these files is to automate deploy and configure-as-code stringer host
 - stringer-cd - The code deploy template to deploy stringer to the EC2 instance. (under construction)
 
 
+#### TODO:
+1. Replace stringer-iam-policy in wild card resource definitions with parameterized explicit resource definitions.
+
 ### Creation and Configuration of AWS Services for stringer.
 
 

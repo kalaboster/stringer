@@ -9,10 +9,14 @@ Parameters:
     Description: The bucket name
     Type: String
 
+  InstanceRoleName:
+    Default: stringer-instance-role
+    Description: The role the instance need to read the bucket.
+    Type: String
 
 Resources:
 
-  CodeBuildLogPolicy:
+  CodeBuildPolicy:
     Type: AWS::IAM::Policy
     Properties:
       PolicyName: stringer-cb-policy
@@ -48,4 +52,22 @@ Resources:
         -
           Ref: CodeBuildRoleName
 
+
+  CodeDeployPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: stringer-cd-policy
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          -
+            Effect: Allow
+            Action:
+              - s3:Get*,
+              - s3:List*
+            Resource: "*"
+
+      Roles:
+        -
+          Ref: InstanceRoleName
 

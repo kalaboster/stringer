@@ -37,7 +37,7 @@ Resources:
       DeploymentConfigName: CodeDeployDefault.OneAtATime
       AutoRollbackConfiguration:
         Enabled: 'false'
-      DeploymentGroupName: wordsum
+      DeploymentGroupName: stringer
       Ec2TagFilters:
         - Key:
             Ref: EC2TagKey
