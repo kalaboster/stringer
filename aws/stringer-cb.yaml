@@ -1,0 +1,49 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Description: The code deployment application.
+
+Parameters:
+
+  ProjectName:
+    Default: stringer-codebuild-service
+    Description: IAM service role for code deploy
+    Type: String
+
+  ServiceRole:
+    Default: codebuild-service-role
+    Type: String
+
+  CodeBuildBucket:
+    Default: INPUT_THE_BUCKET
+    Type: String
+
+
+Resources:
+
+  StringerCodeBuildProject:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Description: Stringer build.
+      Name:
+        Ref: ProjectName
+      ServiceRole:
+        Ref: ServiceRole
+      Artifacts:
+        Name: stringer-codebuild-artifact
+        Location:
+          Ref: CodeBuildBucket
+        Type: S3
+        NamespaceType: NONE
+        Packaging: NONE
+        Path: stringer
+      Environment:
+        Type: LINUX_CONTAINER
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: aws/codebuild/python:2.7.12
+      Source:
+        Location: https://github.com/kalaboster/stringer
+        Type: GITHUB
+      TimeoutInMinutes: 10
+      Tags:
+        - Key: buildprocess
+          Value: stringer
