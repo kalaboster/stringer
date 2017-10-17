@@ -130,20 +130,7 @@ A tool to redact patterns in a log file or files in a tar.gz arhive and create a
 
 ## AWS Deploy
 
-(Under constructions to make AWS command line commands as those tools are now in requirements.txt)
-
-TODO:
-a. Create template IAM polices to attach to the role.
-b. Create template S3 bucket.
-c. Create subnet and security group template.
-
-1. Launch CF stack for IAM role and instance-profile: aws/stringer-iam.yaml
-
-2. Launch CF stack for the EC2 instance: aws/stringer-ec2.yaml
-
-3. Launch CF stack for the CodeDeploy application configuration: aws/stringer-cd.yaml
-
-4. Working on the deploying with aws script...
+1. Read aws/README.md
 
 
 ## Copyright
