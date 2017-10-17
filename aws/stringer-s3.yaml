@@ -1,11 +1,11 @@
 AWSTemplateFormatVersion: "2010-09-09"
 
-Description: Begining s3 template to configure and create for this app.
+Description: Template for the s3 buckets required by the application.
 
 Parameters:
 
-  BucketName:
-    Default: REPLACE_WITH_VALUE
+  BuildBucketName:
+    Default: REPLACE_BUILD_BUCKET_NAME
     Description: The bucket name
     Type: String
 
@@ -16,5 +16,5 @@ Resources:
     Type: "AWS::S3::Bucket"
     Properties:
       BucketName:
-        Ref: BucketName
+        Ref: BuildBucketName
       AccessControl: Private

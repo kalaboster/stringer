@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: "2010-09-09"
 
-Description: Begining s3 template to configure and create for this app.
+Description: Template to create the policies for stringer.
 
 Parameters:
 

@@ -10,7 +10,7 @@ Parameters:
     Type: String
 
   Subnet:
-    Default: REPLACE_WITH_VALUE
+    Default: REPLACE_WITH_EC2_SUBNET_STRING
     Description: Subnet for one non elb
     Type: String
 
@@ -25,17 +25,17 @@ Parameters:
     Type: String
 
   SecurityGroups:
-    Default: REPLACE_WITH_VALUE
+    Default: REPLACE_WITH_SECURITYGROUPS_LIST
     Description: A list of groups.
     Type: CommaDelimitedList
 
   KeySSH:
-    Default: REPLACE_WITH_VALUE
+    Default: REPLACE_WITH_KEYSSH_NAME
     Description: The name of the key we want on our default installation.
     Type: String
 
-  IamRole:
-    Default: stringer-instance
+  IamProfile:
+    Default: stringer-instance-profile
     Description: The owner value for the tag we care about.
     Type: String
 
@@ -45,7 +45,7 @@ Parameters:
     Type: String
 
   OwnerValue:
-    Default: kalab
+    Default: REPLACE_WITH_YOU
     Description: The owner value for the tag we care about.
     Type: String
 
@@ -82,7 +82,7 @@ Resources:
       KeyName:
         Ref: KeySSH
       IamInstanceProfile:
-        Ref: IamRole
+        Ref: IamProfile
       Tags:
          - Key:
             Ref: OwnerKey
