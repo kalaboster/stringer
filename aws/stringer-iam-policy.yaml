@@ -12,11 +12,10 @@ Parameters:
 
 Resources:
 
-
   CodeBuildLogPolicy:
     Type: AWS::IAM::Policy
     Properties:
-      PolicyName: stringer-cb-log-policy
+      PolicyName: stringer-cb-policy
       PolicyDocument:
         Version: 2012-10-17
         Statement:

@@ -22,11 +22,13 @@ Parameters:
     Type: String
 
 Resources:
+
   Application:
     Type: 'AWS::CodeDeploy::Application'
     Properties:
       ApplicationName:
         Ref: ApplicationName
+
   DeploymentGroup:
     Type: 'AWS::CodeDeploy::DeploymentGroup'
     Properties:

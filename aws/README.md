@@ -13,4 +13,6 @@ Purpose of these files is to automate deploy and configure-as-code stringer host
 
 - stringer-ec2 - The template to launch and configure an ec2 instance for stringer.
 
-- stringer-cd - The cloud deploy template to deploy stringer to the EC2 instance.
+- stringer-cd - The code deploy template to deploy stringer to the EC2 instance.
+
+- stringer-cb - The code build template to build stringer.
