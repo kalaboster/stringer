@@ -29,7 +29,7 @@ Resources:
       ServiceRole:
         Ref: ServiceRole
       Artifacts:
-        Name: stringer-codebuild-artifact
+        Name: stringer-codebuild-artifact.zip
         Location:
           Ref: BuildBucketName
         Type: S3
