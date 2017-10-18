@@ -59,20 +59,77 @@ Resources:
           Ref: CodeBuildServiceRoleName
 
 
-  CodeDeployPolicy:
+  CodeDeployServicePolicy:
     Type: AWS::IAM::Policy
     Properties:
-      PolicyName: stringer-cd-policy
+      PolicyName: stringer-cd-service-policy
       PolicyDocument:
         Version: 2012-10-17
         Statement:
           -
             Effect: Allow
             Action:
-              - s3:Get*,
-              - s3:List*
+              - autoscaling:CompleteLifecycleAction
+              - autoscaling:DeleteLifecycleHook
+              - autoscaling:DescribeAutoScalingGroups
+              - autoscaling:DescribeLifecycleHooks
+              - autoscaling:PutLifecycleHook
+              - autoscaling:RecordLifecycleActionHeartbeat
+              - autoscaling:CreateAutoScalingGroup
+              - autoscaling:UpdateAutoScalingGroup
+              - autoscaling:EnableMetricsCollection
+              - autoscaling:DescribeAutoScalingGroups
+              - autoscaling:DescribePolicies
+              - autoscaling:DescribeScheduledActions
+              - autoscaling:DescribeNotificationConfigurations
+              - autoscaling:DescribeLifecycleHooks
+              - autoscaling:SuspendProcesses
+              - autoscaling:ResumeProcesses
+              - autoscaling:AttachLoadBalancers
+              - autoscaling:PutScalingPolicy
+              - autoscaling:PutScheduledUpdateGroupAction
+              - autoscaling:PutNotificationConfiguration
+              - autoscaling:PutLifecycleHook
+              - autoscaling:DescribeScalingActivities
+              - autoscaling:DeleteAutoScalingGroup
+              - ec2:DescribeInstances
+              - ec2:DescribeInstanceStatus
+              - ec2:TerminateInstances
+              - tag:GetTags
+              - tag:GetResources
+              - sns:Publish
+              - cloudwatch:DescribeAlarms
+              - cloudwatch:PutMetricAlarm
+              - elasticloadbalancing:DescribeLoadBalancers
+              - elasticloadbalancing:DescribeInstanceHealth
+              - elasticloadbalancing:RegisterInstancesWithLoadBalancer
+              - elasticloadbalancing:DeregisterInstancesFromLoadBalancer
+              - elasticloadbalancing:DescribeTargetGroups
+              - elasticloadbalancing:DescribeTargetHealth
+              - elasticloadbalancing:RegisterTargets
+              - elasticloadbalancing:DeregisterTargets
             Resource: "*"
 
       Roles:
        -
         Ref: CodeDeployServiceRoleName
+
+
+  CodeDeployInstancePolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName:  stringer-cd-instance-policy
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          -
+            Effect: Allow
+            Action:
+              - s3:GetObject
+              - s3:GetObjectVersion
+              - s3:ListBucket
+            Resource: "*"
+
+      Roles:
+       -
+        Ref: InstanceRoleName
