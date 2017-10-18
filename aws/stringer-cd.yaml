@@ -18,6 +18,11 @@ Parameters:
     Description: The bucket name
     Type: String
 
+  S3Key:
+    Default: REPLACE_S3_KEY
+    Description: The key to deploy.
+    Type: String
+
   EC2TagKey:
     Default: owner
     Type: String
@@ -47,8 +52,9 @@ Resources:
           RevisionType: S3
           S3Location:
             Bucket:
-             Ref: BuildBucketName
-            Key: stringer
+              Ref: BuildBucketName
+            Key:
+              Ref: S3Key
             BundleType: Zip
       DeploymentGroupName: stringer
       Ec2TagFilters:
