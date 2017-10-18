@@ -16,4 +16,5 @@ artifacts:
     - permutations_app.py
     - log_redaction_cli.py
     - requirements.txt
+    - appspec.yml
     - README.md
