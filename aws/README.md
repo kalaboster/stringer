@@ -10,6 +10,9 @@ Purpose of these files is to automate deploy and configure-as-code stringer host
 - awscli: http://docs.aws.amazon.com/cli/latest/userguide/installing.html
 - aws services: https://aws.amazon.com/
 - ec2 key pairs: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html
+- stringer-env-var.sh = A shell script you input your unique values into then execute, so you don't need to manually
+alter the commands to create the stack.
+
 
 ### CloudFormation Templates
 
@@ -28,6 +31,9 @@ Purpose of these files is to automate deploy and configure-as-code stringer host
 
 #### TODO:
 1. Replace stringer-iam-policy in wild card resource definitions with parameterized explicit resource definitions.
+2. complete on shell to executed commands and wait fo the stack to create checking every ten seconds until I decide
+on how to master all the templates.
+3. Use Lex to automate the configuration and help a person configure it and alter templates through the API.
 
 ### Creation and Configuration of AWS Services for stringer.
 
@@ -40,16 +46,18 @@ Purpose of these files is to automate deploy and configure-as-code stringer host
 
 4. cd stringer/aws
 
-5. aws cloudformation create-stack --stack-name stringer-iam-role --template-body file://stringer-iam-role.yaml --capabilities CAPABILITY_NAMED_IAM
+5. Write and save values into stringer-env-var.sh
 
-6. aws cloudformation create-stack --stack-name stringer-iam-policy --template-body file://stringer-iam-policy.yaml --capabilities CAPABILITY_NAMED_IAM
+6. source stringer-env-var.sh
 
-7. NOTE: All values of parameters can be replaced. All the following REPLACE_UPPER_CASE values beginning with REPLACE need to be replaced.
+7. aws cloudformation create-stack --stack-name stringer-iam-role --template-body file://stringer-iam-role.yaml --capabilities CAPABILITY_NAMED_IAM
 
-8. aws cloudformation create-stack --stack-name stringer-s3 --template-body file://stringer-s3.yaml  --parameters ParameterKey=BuildBucketName,ParameterValue=REPLACE_BUILD_BUCKET_NAME
+8. aws cloudformation create-stack --stack-name stringer-iam-policy --template-body file://stringer-iam-policy.yaml --capabilities CAPABILITY_NAMED_IAM
 
-9. aws cloudformation create-stack --stack-name stringer-ec2 --template-body file://stringer-ec2.yaml  --parameters ParameterKey=Ami,ParameterValue=ami-718c6909 ParameterKey=Instance,ParameterValue=t2.micro ParameterKey=Zone,ParameterValue=us-west-2a ParameterKey=Subnet,ParameterValue=REPLACE_WITH_EC2_SUBNET_STRING ParameterKey=SecurityGroups,ParameterValue=REPLACE_WITH_SECURITYGROUPS_LIST ParameterKey=KeySSH,ParameterValue=REPLACE_WITH_KEYSSH_NAME ParameterKey=IamProfile,ParameterValue=stringer-instance-profile ParameterKey=OwnerKey,ParameterValue=owner ParameterKey=OwnerValue,ParameterValue=REPLACE_WITH_YOU
+9. aws cloudformation create-stack --stack-name stringer-s3 --template-body file://stringer-s3.yaml  --parameters ParameterKey=BuildBucketName,ParameterValue=$REPLACE_BUILD_BUCKET_NAME
 
-10. aws cloudformation create-stack --stack-name stringer-cb --template-body file://stringer-cb.yaml --parameters ParameterKey=ProjectName,ParameterValue=stringer-codebuild-service  ParameterKey=ServiceRole,ParameterValue=codebuild-service-role ParameterKey=BuildBucketName,ParameterValue=REPLACE_BUILD_BUCKET_NAME
+10. aws cloudformation create-stack --stack-name stringer-ec2 --template-body file://stringer-ec2.yaml  --parameters ParameterKey=Ami,ParameterValue=ami-718c6909 ParameterKey=Instance,ParameterValue=t2.micro ParameterKey=Zone,ParameterValue=us-west-2a ParameterKey=Subnet,ParameterValue=$REPLACE_WITH_EC2_SUBNET_STRING ParameterKey=SecurityGroups,ParameterValue=$REPLACE_WITH_SECURITYGROUPS_LIST ParameterKey=KeySSH,ParameterValue=$REPLACE_WITH_KEYSSH_NAME ParameterKey=IamProfile,ParameterValue=stringer-instance-profile ParameterKey=OwnerKey,ParameterValue=owner ParameterKey=OwnerValue,ParameterValue=$REPLACE_WITH_YOU
 
-11. (under construction)
+11. aws cloudformation create-stack --stack-name stringer-cb --template-body file://stringer-cb.yaml --parameters ParameterKey=ProjectName,ParameterValue=stringer-codebuild-service  ParameterKey=ServiceRole,ParameterValue=codebuild-service-role ParameterKey=BuildBucketName,ParameterValue=$REPLACE_BUILD_BUCKET_NAME
+
+12. (under construction)
