@@ -60,4 +60,4 @@ on how to master all the templates.
 
 11. aws cloudformation create-stack --stack-name stringer-cb --template-body file://stringer-cb.yaml --parameters ParameterKey=ProjectName,ParameterValue=stringer-codebuild-service  ParameterKey=ServiceRole,ParameterValue=codebuild-service-role ParameterKey=BuildBucketName,ParameterValue=$REPLACE_BUILD_BUCKET_NAME
 
-12. (under construction)
+12. (under construction) aws cloudformation create-stack --stack-name stringer-cd --template-body file://stringer-cd.yaml --parameters ParameterKey=ServiceRoleArn,ParameterValue=$REPLACE_CODE_DEPLOY_ARN_ROLE ParameterKey=BuildBucketName,ParameterValue=$REPLACE_BUILD_BUCKET_NAME ParameterKey=EC2TagValue,ParameterValue=$REPLACE_WITH_YOU

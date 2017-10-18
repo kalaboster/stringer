@@ -5,8 +5,8 @@ Description: The code deployment application.
 Parameters:
 
   ServiceRoleArn:
-    Default: REPLACE_ARN_ROLE
-    Description: EC2 instance role as it will be used by code deploy.
+    Default: REPLACE_CODE_DEPLOY_ARN_ROLE
+    Description: Code deploy role.
     Type: String
 
   ApplicationName:
@@ -14,7 +14,7 @@ Parameters:
     Type: String
 
   BuildBucketName:
-    Default: stringer-test-02
+    Default: REPLACE_BUILD_BUCKET_NAME
     Description: The bucket name
     Type: String
 
@@ -23,7 +23,7 @@ Parameters:
     Type: String
 
   EC2TagValue:
-    Default: kalab
+    Default: REPLACE_WITH_YOU
     Type: String
 
 Resources:
