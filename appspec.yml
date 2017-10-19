@@ -1,0 +1,15 @@
+version: 0.1
+
+os: linux
+
+files:
+  - source: /
+    destination: /var/www/service/stringer
+
+hooks:
+
+  BeforeInstall:
+    - location: aws/install_ec2/setup_stringer.sh
+      timeout: 10
+      runas: ubuntu
+
