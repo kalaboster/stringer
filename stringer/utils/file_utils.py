@@ -17,7 +17,6 @@ Utilities to search files and retain meta data about files.
 import logging
 import os
 import re
-from pandas import read_csv
 import stringer.model.mask_model as mask_model
 
 '''
