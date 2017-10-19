@@ -10,11 +10,10 @@ phases:
 
 artifacts:
   files:
+    - aws/install_ec2/**/*
     - test/**/*
     - stringer/**/*
-    - permutations_cli.py
     - permutations_app.py
-    - log_redaction_cli.py
     - requirements.txt
     - appspec.yml
     - README.md
