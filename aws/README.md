@@ -16,17 +16,21 @@ alter the commands to create the stack.
 
 ### CloudFormation Templates
 
-- stringer-iam-roles - The IAM roles of stringer.
+- stringer-sg.yaml - The security group for stringer.
 
-- stringer-iam-policy - The IAM policies for stringer roles. (Creating...)
+- stringer-iam-roles.yaml - The IAM roles of stringer.
 
-- stringer-s3 - The S3 template to deploy stringer to the EC2 instance.
+- stringer-iam-policy.yaml - The IAM policies for stringer roles. (Creating...)
 
-- stringer-ec2 - The template to launch and configure an ec2 instance for stringer.
+- stringer-s3.yaml - The S3 template to deploy stringer to the EC2 instance.
 
-- stringer-cb - The code build template to build stringer.
+- stringer-ec2.yaml - The template to launch and configure an ec2 instance for stringer.
 
-- stringer-cd - The code deploy template to deploy stringer to the EC2 instance. (under construction)
+- stringer-cb.yaml - The code build template to build stringer.
+
+- stringer-cd.yaml - The code deploy template to deploy stringer to the EC2 instance. (under construction)
+
+- install_ec2 - The files used by appspec.yml and codedeploy to install stringer on to the instance created by stringer-ec2.yaml.
 
 
 #### TODO:
