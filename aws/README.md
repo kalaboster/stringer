@@ -46,6 +46,10 @@ on how to master all the templates.
 
 4. cd stringer/aws
 
+5. Get you VPC id and replace it with REPLACE_VPC_ID in the following command.
+
+5. aws cloudformation create-stack --stack-name stringer-sg --template-body file://stringer-sg.yaml  --parameters ParameterKey=VpcId,ParameterValue=REPLACE_VPC_ID
+
 5. Write and save values into stringer-env-var.sh
 
 6. source stringer-env-var.sh
