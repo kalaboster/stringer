@@ -8,8 +8,8 @@ files:
 
 hooks:
 
-  BeforeInstall:
+  AfterInstall:
     - location: aws/install_ec2/setup_stringer.sh
-      timeout: 10
+      timeout: 300
       runas: ubuntu
 

@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 
-pip install -r requirements.txt
+# Install the requirements.
+sudo pip install -r /var/www/service/stringer/requirements.txt
 
-# Test to verify privledge levels.
-mkdir /var/test
-cp -R . /var/test/
 
 
