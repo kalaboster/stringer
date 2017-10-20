@@ -1,9 +1,9 @@
 from flask import Flask
 from flask import request
 import stringer.utils.permutate_utils as permutate_utils
-app = Flask(__name__)
+application = Flask(__name__)
 
-@app.route("/api/v1.0/permutations", methods=['GET'])
+@application.route("/api/v1.0/permutations", methods=['GET'])
 def get_permutations():
 
     string_arg = request.args.get('string')

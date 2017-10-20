@@ -12,4 +12,6 @@ hooks:
     - location: aws/install_ec2/setup_stringer.sh
       timeout: 300
       runas: ubuntu
-
+    - location: aws/install_ec2/setup_nginx.sh
+      timeout: 300
+      runas: ubuntu
