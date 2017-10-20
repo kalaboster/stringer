@@ -68,4 +68,10 @@ on how to master all the templates.
 
 11. aws cloudformation create-stack --stack-name stringer-cb --template-body file://stringer-cb.yaml --parameters ParameterKey=ProjectName,ParameterValue=stringer-codebuild-service  ParameterKey=ServiceRole,ParameterValue=codebuild-service-role ParameterKey=BuildBucketName,ParameterValue=$REPLACE_BUILD_BUCKET_NAME
 
-12. (under construction) aws cloudformation create-stack --stack-name stringer-cd --template-body file://stringer-cd.yaml --parameters ParameterKey=ServiceRoleArn,ParameterValue=$REPLACE_CODE_DEPLOY_ARN_ROLE ParameterKey=BuildBucketName,ParameterValue=$REPLACE_BUILD_BUCKET_NAME  ParameterKey=S3Key,ParameterValue=$REPLACE_S3_KEY ParameterKey=EC2TagValue,ParameterValue=$REPLACE_WITH_YOU
+12. ...Wait from stacks to Complete.
+
+13. aws cloudformation create-stack --stack-name stringer-cd --template-body file://stringer-cd.yaml --parameters ParameterKey=ServiceRoleArn,ParameterValue=$REPLACE_CODE_DEPLOY_ARN_ROLE ParameterKey=BuildBucketName,ParameterValue=$REPLACE_BUILD_BUCKET_NAME  ParameterKey=S3Key,ParameterValue=$REPLACE_S3_KEY ParameterKey=EC2TagValue,ParameterValue=$REPLACE_WITH_YOU
+
+14. ...Wait for stack to Complete.
+
+15. TEST: http://<eip>:8080/api/v1.0/permutations?string=test
