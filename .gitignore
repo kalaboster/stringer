@@ -11,6 +11,7 @@ build/
 *.png
 .cache/
 *.pyc
+*.tar.gz
 # Python stuff
 *__pycache__*
 # Python virutalenv
@@ -23,4 +24,5 @@ lib/*
 local/
 lib64
 pip-selfcheck.json
-
+# Project
+test/files/*
