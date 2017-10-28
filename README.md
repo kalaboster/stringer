@@ -96,7 +96,7 @@ A tool to return permustations of a string.
 
 2. execute this command to launch Flask restful app: 'python ./permutations_app.py'
 
-3. open browser and input this URL: 'http://0.0.0.0:5000/api/v1.0/permutations?string=test'
+3. open browser and input this URL: 'http://0.0.0.0:8080/api/v1.0/permutations?string=test'
 
 
 ## log redaction - an app to redact patterns in logs.
