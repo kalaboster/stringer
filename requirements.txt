@@ -10,3 +10,4 @@ flask-swagger==0.2.13
 flask-restplus==0.10.1
 awscli==1.11.170
 uwsgi==2.0.15
+flake8==3.5.0
