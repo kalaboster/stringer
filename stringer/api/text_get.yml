@@ -1,0 +1,17 @@
+tags:
+  - text
+parameters:
+  - in: body
+    name: body
+    schema:
+      id: Text
+      required:
+        - string
+      properties:
+        string:
+          type: string
+          description: string to permutate
+responses:
+  200:
+    description: Returns the permutations of a string
+    $ref: '#/definitions/Perm'
