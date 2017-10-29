@@ -6,6 +6,7 @@ pytest-twisted==1.5
 pytest==3.0.7
 docopt==0.6.2
 flask==0.12.2
+flask-swagger==0.2.13
 flask-restplus==0.10.1
 awscli==1.11.170
 uwsgi==2.0.15
