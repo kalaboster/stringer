@@ -1,17 +1,46 @@
-from flask import Flask
-from flask import request
+from flask import Flask, jsonify
+from flask.views import MethodView
+from flask_swagger import swagger
 import stringer.utils.permutate_utils as permutate_utils
-application = Flask(__name__)
+app = Flask(__name__)
 
-@application.route("/api/v1.0/permutations", methods=['GET'])
-def get_permutations():
+class PermAPI(MethodView):
 
-    string_arg = request.args.get('string')
+    def get(self, text):
 
-    perm_list = permutate_utils.generate(string_arg)
+        """
+        Get the permutations of a text.
+        swagger_from_file: ./index.yml
+        """
+        perm_list = permutate_utils.generate(text)
 
-    return str(perm_list)
+        return str(perm_list)
 
+
+
+
+
+perm_view = PermAPI.as_view('perm')
+app.add_url_rule('/v1/perm/<string:text>', view_func=perm_view, methods=["GET"])
+
+@app.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin','*')
+    response.headers.add('Access-Control-Allow-Headers', "Authorization, Content-Type")
+    response.headers.add('Access-Control-Expose-Headers', "Authorization")
+    response.headers.add('Access-Control-Allow-Methods', "GET, OPTIONS")
+    response.headers.add('Access-Control-Allow-Credentials', "true")
+    response.headers.add('Access-Control-Max-Age', 60 * 60 * 24 * 20)
+    return response
+
+
+@app.route("/v1")
+def root():
+    return "This is not the api call you're looking for."
+
+@app.route("/spec")
+def spec():
+    return jsonify(swagger(app, from_file_keyword='swagger_from_file:'))
 
 if __name__ == "__main__":
-    application.run(host='0.0.0.0', debug=True, port=8080)
+    app.run(host='0.0.0.0', debug=True, port=8080)

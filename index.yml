@@ -1,0 +1,44 @@
+swagger: "2.0"
+info:
+  description: "This is an attempt to use swagger with Python Flask"
+  version: "1.0.0"
+  title: "Stringer POC"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "apiteam@swagger.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "0.0.0.0"
+basePath: "/v1"
+tags:
+- name: "text"
+  description: "Text to create permutations"
+  externalDocs:
+    description: "Working in progress."
+    url: "http://wordsum.com"
+schemes:
+- "http"
+paths:
+  /perm/{text}:
+    get:
+      tags:
+      - "text"
+      summary: "Get text permutations."
+      description: ""
+      operationId: "getPerm"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "text"
+        in: "path"
+        description: "The text to get the permutations."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successful operation"
+externalDocs:
+  description: "See more at..."
+  url: "http://wordsum.com"

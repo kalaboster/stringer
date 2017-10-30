@@ -11,3 +11,6 @@ flask-restplus==0.10.1
 awscli==1.11.170
 uwsgi==2.0.15
 flake8==3.5.0
+djangorestframework==3.4.5
+markdown==2.6.9
+django-filter==1.1.0
