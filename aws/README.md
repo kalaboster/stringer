@@ -74,4 +74,4 @@ on how to master all the templates.
 
 14. ...Wait for stack to Complete.
 
-15. TEST: http://<eip>:8080/api/v1.0/permutations?string=test
+15. TEST: http://<eip>:8080/v1/perm/test
