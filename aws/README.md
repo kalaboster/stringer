@@ -35,7 +35,7 @@ alter the commands to create the stack.
 
 #### TODO:
 1. Replace stringer-iam-policy in wild card resource definitions with parameterized explicit resource definitions.
-2. complete on shell to executed commands and wait fo the stack to create checking every ten seconds until I decide
+2. Complete use of shell to executed commands and wait for the stack to create by checking every ten seconds until I decide
 on how to master all the templates.
 3. Use Lex to automate the configuration and help a person configure it and alter templates through the API.
 
@@ -74,4 +74,4 @@ on how to master all the templates.
 
 14. ...Wait for stack to Complete.
 
-15. TEST: http://<eip>:8080/v1/perm/test
+15. TEST: http://&lt;eip>:8080/v1/perm/test

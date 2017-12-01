@@ -7,11 +7,11 @@ It has two current uses:
 
 1. It has a cli to take a string and return its permutations.
 
-2. It can take a at tar.gz containing files and search those files and redact/mask credit card and ssn patterned numbers.
+2. It can take a tar.gz containing files and search those files for patterns similar to credit cards and 
+ social security numbers. It will then redact/mask credit card and ssn patterned numbers and create a log.
 The patterns are defined in the mask_model.
 
-Please feel free to use. While this has been tested on Ubuntu 14. It is currently being tested on different platforms.
-
+Please feel free to use. This has been tested on Ubuntu 14. 
 
 ## Required Tools:
  - Python
@@ -24,17 +24,17 @@ stringer/ is root level of the source.
 
 test/ is root level of the tests for the wordsum python code.
 
-aws/ is a root level source of aws cloudformation configuration files and replated documents and scripts. (under construction)
+aws/ is a root level source of aws cloudformation configuration files and related documents and scripts. (under construction)
 
 ## TODO
 
 1. Complete all the TODO in code.
 
-2. Test in again in Ubuntu and MacOS
+2. Test again on Ubuntu and MacOS
 
 3. Use os.path.join for separator where needed instead of string or os.sep.
 
-4. Test on widows where possible.
+4. Test on widows when possible.
 
 5. Integration tests.
 
